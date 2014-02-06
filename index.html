@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+        <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div ng-app="myApp" class="container">
+
+        <!-- Menubar -->
+
+            <div class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand active" href="#">Omnibox Search [angular + bootstrap]</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <!-- <li><a href="#about">Menu</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li> -->
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+
+        <!-- END Menubar -->
+
+        <!-- Search box and suggestions filter -->
+
+            <div ng-controller="AvengersCtrl">
+                <div class="container-fluid">
+                    <div class="col-md-4"></div><!-- Column layout spacer -->
+
+                    <div class="col-md-4 container">
+                        <form role="form" class="form-horizontal">
+                            <div class="form-group">
+
+                                <!-- Search Field -->
+                                <searchbox>
+                                    <input typing="search_btn" type="text" class="form-control col-sm-12" ng-model="search.$" placeholder="Enter an Avengers actor, or character name" value="">
+                                    <button id="search_btn" type="button" class="btn btn-primary col-sm-12" disabled="disabled">Search</button>
+                                </searchbox>
+                                <!-- END Search Field -->
+
+                                <!-- Search Suggestions -->
+                                <search_suggestions>
+                                    <table class="table table-striped col-sm-12 table-hover table-bordered">
+                                        <tr ng-repeat="person in avengers.cast | orderBy:'name' |filter:search">
+                                            <td>
+                                                {{person.name}} is
+                                                <span style="font-weight: bold; color: #00F;">{{person.character | all_caps}}</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </search_suggestions>
+                                <!-- END Suggestions -->
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-4"></div><!-- Column layout spacer -->
+                </div>
+            </div>
+
+        <!-- End Search box and suggestions filter -->
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
